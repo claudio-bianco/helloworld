@@ -4,9 +4,9 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws --version      
+      - aws --version
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 353719963446.dkr.ecr.us-west-2.amazonaws.com
-      - REPOSITORY_URI=353719963446.dkr.ecr.us-west-2.amazonaws.com/devops-build-ecr
+      - REPOSITORY_URI=353719963446.dkr.ecr.us-west-2.amazonaws.com/helloworld
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
